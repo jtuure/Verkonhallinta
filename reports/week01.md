@@ -112,7 +112,7 @@ PING 10.10.20.101 (10.10.20.101) 56(84) bytes of data.
 
 rtt min/avg/max/mdev = 0.115/0.234/0.540/0.177 ms
 
-### ping -c 4 10.10.30.101
+### ping -c 4 10.10.30.101-komennon tuloste
 root@client1:/# ping -c 4 10.10.30.101
 
 PING 10.10.30.101 (10.10.30.101) 56(84) bytes of data.
@@ -151,4 +151,4 @@ Ajankäyttöön liittyen eniten aikaa tuntui menevän työkaluihin tutustumiseen
 
 Hyvin tehty dokumentaatio nopeuttaa valtavasti ongelmien ratkomista ja toimenpiteiden tekemistä, kun verkkoja ja yhteyksiä ei tarvitse alkaa selvittää. Dokumentaatio auttaa myös arvioimaan työaikaa ja kustannuksia, joita mahdolliset toimenpiteet vaativat.  
 
-Tekoälyn käyttö: Käytin Chat GPT (GPT-5.6 Sol) Exceliin kirjoitettujen Markdown-taulukoiden muuntamiseen, sekä yleisesti Markdowniin tutustumisen apuna. Käytin mallia myös apuna yrittäessäni   
+Tekoälyn käyttö: Käytin Chat GPT (GPT-5.6 Sol) Exceliin kirjoitettujen Markdown-taulukoiden muuntamiseen, sekä yleisesti Markdowniin tutustumisen apuna. Käytin mallia myös apuna yrittäessäni ymmärtää bash-komentoja pyytäen mallia selittään komentojen käyttöä selkokielellä. 
