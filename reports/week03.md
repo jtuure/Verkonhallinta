@@ -200,10 +200,10 @@ Aikasarjoista voi olla apua vianetsinnässä, kun pystytään määrittämään 
 
 ## 7. Yhteenveto
 
-Tämä harjoitus oli kurssin aiempiin harjoituksiin verrattuna selkeämpi ja suoraviivaisempi. Github-ympäristössä olleita suoritusohjeita seruaamalla kaikki onnistui lähestulkoon kerralla, eikä ohjeistuksen ulkopuolista säätämistä teknologioiden tomimiseksi tarviinut tehdä. Esimerkiksi SNMP:hen verrattuna Prometheus tuntui enemmän "avaimet käteen"-periaatteella toimivalta ratkaisulta, koska asentaminen ja käyttöönotto oli melko suoraviivaista. SNMP:hen verrattuna Prometheuksen kanssa ei tarvinnut muokata konfiguraatiotekstitiedostoja tai ajaa useita bash-komentoja homman toimimaan saamiseksi. 
+Tämä harjoitus oli kurssin aiempiin harjoituksiin verrattuna selkeämpi ja suoraviivaisempi. Github-ympäristössä olleita suoritusohjeita seuraamalla kaikki onnistui lähestulkoon kerralla, eikä ohjeistuksen ulkopuolista säätämistä teknologioiden tomimiseksi tarviinut tehdä. Esimerkiksi SNMP:hen verrattuna Prometheus tuntui enemmän "avaimet käteen"-periaatteella toimivalta ratkaisulta, koska asentaminen ja käyttöönotto oli melko suoraviivaista. SNMP:hen verrattuna Prometheuksen kanssa ei tarvinnut muokata konfiguraatiotekstitiedostoja tai ajaa useita bash-komentoja homman toimimaan saamiseksi. 
 
 Haasteita Prometheuksen kanssa voi tulla siinä miten ja mitä monitoroitua dataa tallennetaan. Trendien tunnistamiseksi olisi hyvä tallentaa pidemmän aikavälin dataa, mutta se ei aina liene mielekästä. Myös tallennusvälin (intervalli) valinta voi tuottaa haasteita, jos halutaan seurata pidemmän aikavälin trendejä esim. palvelinliikenteen kasvua, mutta myös tunnistaa reaaliaikasesti poikkeavuuksia.  
 
-Prometheus sovletuu erityisen hyvin sellaisiin järjestelmiin, joissa on tarvetta realiakaiseen verkkoliikenteen, verkontoiminnan ja resurssien käytön seurantaan ja joissa on tarvetta seurata useampaa parametria samanaikaisesti..
+Prometheus sovletuu erityisen hyvin sellaisiin järjestelmiin, joissa on tarvetta realiakaiseen verkkoliikenteen, verkontoiminnan ja resurssien käytön seurantaan ja joissa on tarvetta seurata useampaa parametria samanaikaisesti. Prometheus soveltuu myös hyvin pilviympäristöihin.
 
 
