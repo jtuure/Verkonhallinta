@@ -1,7 +1,7 @@
 ---
 - name: Install and configure SNMP
-  hosts: ubuntu_hosts
-  become: true
+  hosts: web1:db1:branch-client
+  become: false
 
   vars:
     snmp_community: public
@@ -30,13 +30,9 @@
 
           agentaddress udp:161
 
-      notify: restart snmpd
 
-    - name: Enable SNMP service
-      service:
-        name: snmpd
-        enabled: yes
-        state: started
+    - name: Restart  SNMP service
+      ansible.builtin.command: service snmpd restart
 
     - name: Verify SNMP process
       shell: pgrep snmpd

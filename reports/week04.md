@@ -76,7 +76,31 @@ Myös reitittimien yhteystestit epäonnistuivat. r1 epäonnistumisen syy poikkea
 ![Ansible ping](images/ansible_pingyml.png)
 *Kuva 1. Tuloste ping.yml playbookin ajamisesta. Kuvassa näkyy yhteystestien tulokset eri laitteille.* 
 
-## SNMP Playbook
+## 3. SNMP Playbook
+Tehtävänä oli luoda playbook jonka nimi oli:
+```text
+install-snmp.yml
+```
+Koska tämän niminen tiedosto löytyi jo playbook-hakemistosta otettiin siitä varmuuskopio talteen, sillä se vaikutti tekevän ohjeistuksessa pyydetyt asiat. Tämä tehtiin seuraavasti:
+```bash
+cp install-snmp.yml install-snmp-old.yml
+```
+install-snmp-old.yml playbookia muokattiin siten, että se päivittää pakettilistan, asentaa snmp sekä snmpd ja käynnistää palvelun ja suorittaa playbookin koneille web1, db1 ja branch-client1 (Kuva 2). Tämän jälkeen ajettiin komento:
+
+```bash
+ansible-playbook -i ../inventory.ini install-snmp.yml
+```
+
+joka meni läpi ilman ongelmia (Kuva 3)
+
+![install-snmp](images/install_snmp.png)
+*Kuva 2. Kuvakaappaus install-snmp.yml playbook-skriptistä.*
+
+![install-snmp](images/run_install_snmp.png)
+*Kuva 3. Kuvakaappaus install-snmp.yml playbook-skriptin ajamisesta.*
+
+
+
 
 
 ## 4. Node Exporter Playbook
