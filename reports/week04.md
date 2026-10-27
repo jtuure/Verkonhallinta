@@ -47,10 +47,41 @@ r2 | SUCCESS => {
 
 Muiden laitteiden kohdalla luki "UNREACHABLE". 
 
-## 3. SNMP Playbook
+
+Ensimmäistä palybookia yritettiin asentaa siirtymällä ensin playbook-hakemistoon komennolla:
+```bash
+cd /ansible/playbooks
+```
+ja ajamalla komento
+```bash
+ansible-playbook -i ../inventory.ini ping.yml
+```
+Tämän seurauksena ei vielä tapahtunut mitään, koska muihin verkon laitteisiin ei saatu yhteyttä, vaan niistä tuli herjaukset "UNREACHABLE". Sekä toinen herja "[WARNING]: ansible-pylibssh not installed, falling back to paramiko". 
+
+Nämä ongelmat korjattiin laittamalla ssh yhteydet laitteilla päälle. Esimerkiksi web1-palvelimella ensin kirjautumualla palvelimelle ja ajamalla komento:
+``` bash
+service ssh start
+```
+Sama toimenpide tehtiin muillekin laitteille. Tämän jälkeen asennettiin paramiko ansible-palvelimelle. Ensin kirjauduttiin ansible-palvelimelle ja sen jälkeen ajettiin
+```bash
+apt update
+apt install python3-paramiko 
+```
+Tämän jälkeen ajettiin playbook ping.yml, jonka tarkoituksena on testata yhteyksiä Ansiblen ja muiden verkon laitteiden välillä. Playbook pingaa kaikkia linux_hosts ryhmän laitteita ja testaa yhteyksiä reitittimiin (ryhmä routers) kysymällä reitittimen versiota. 
+
+Laitteiden web1, db1, client1, branch-client ja attacker yhteystestit onnistuivat. grafana, prometheus, zabbix, cadvisor ja ansible yhteystestit eivät onnistuneet. Näissäkin saattoi olla sama ongelma, eli SSH palvelin ei ollut päällä. Koska näitä laitteita ei mainittu myöhemmissä harjoituksen vaiheissa, en lähtenyt muuttamaan niiden asetuksia. 
+
+Myös reitittimien yhteystestit epäonnistuivat. r1 epäonnistumisen syy poikkeaa r2 ja r3 (Kuva 1), sillä yritin saada r1 ssh-yhteyttä toimimaan (Chat GPT avustamana), mutta luovutin, koska tulkitsin harjoituksen ohjeita niin, että yhteyksille ansible-palvelimelta reitittimelle ei ollut tarvetta. 
+
+![Ansible ping](images/ansible_pingyml.png)
+*Kuva 1. Tuloste ping.yml playbookin ajamisesta. Kuvassa näkyy yhteystestien tulokset eri laitteille.* 
+
+## SNMP Playbook
+
 
 ## 4. Node Exporter Playbook
 
 ## 5. Vertailu
+
 
 ## 6. Yhteenveto
