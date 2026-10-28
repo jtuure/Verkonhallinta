@@ -108,8 +108,6 @@ DNS kojrausten jälkeen playbookin ajaminen meni läpi ilman ongelmia (Kuva 3):
 *Kuva 3. Kuvakaappaus install-snmp.yml playbook-skriptin ajamisesta.*
 
 
-
-
 ## 4. Node Exporter Playbook
 
 Node Exporter Playbookin luomisessa otettiin mallia Githubista löytyvästä tiedostosta. Alkuperäinen otettiin talteen komennolla:
@@ -126,10 +124,25 @@ Skripti saatiin ajettua onnistuneesti (Kuva 5).
 *Kuva 5. Kuvakaappaus install-node-exporter.yml skritptin ajamisesta.*
 
 
+Tämän jälkeen kerättiin järjestelmätietoja ajamalla ohjeistuksen mukaisesti:
+```bash
+ansible all -i ../inventory.ini -m setup
+```
 
+jolloin tulostui pitkä tekstilitania, josta pystyttiin hakemaan ohjeistuksessa pyydetyt tiedot (Taulukko 2).
 
+*Taulukko 2. inventory.ini skriptin ajamisen tuloksesta haetut tiedostot* 
+
+| Laite         | Käyttöjärjestelmä | IP-osoite   |Prosessorien määrä | Muistin määrä|
+| --------------|-------------------|-----------  |-------------------|--------------
+| client1       | Ubuntu 24.04      |172.20.20.10 | 4                 | 15399
+| db1           | Ubuntu 24.04      |172.20.20.2  | 4                 | 15399
+| branch-client | Ubuntu 24.04      |172.20.20.3  | 4                 | 15399
+| web1          | Ubuntu 24.04      |172.20.20.17 | 4                 | 15399
+| attacker      | Kali Linux 2026.3 |172.20.20.13 | 4                 | 15399 
 
 ## 5. Vertailu
-
+Ansiblella tehtävät asennukset (esim. SNMP ja Node Exporter) sujuvat huomattavasti helpommin, kuin käsin. Minulla oli hieman ongelmia DNS-palvelun kanssa, mutta silti käsin asennukseen verrattuna miellyttävämpää.  Ansiblella automatisoitu asennus hoituu samalla tavalla kaikille laitteille, jolloin virheiden määrä vähenee myös ja versionhallinta helpottuu. Automatisoidut asennukset mahdollistavat myös samankaltaisten verkkoympäristöjen helpon toistamisen tai uudelleen asentamisen. Automaatio on nähdäkseni välttämätöntä verkkoympäristöissä, joissa on paljon laitteita ja jokin kriittinen muutos esim. tietoturvaan liittyen tarvitsee toteuttaa nopeasti. Automaatio voi myös olla välttämätöntä, jos paljon laitteita sisältävän verkkoympäristön toiminta pitää palauttaa nopeasti jonkin laajemman häiriön tai tuhon jälkeen.  
 
 ## 6. Yhteenveto
+Opin miten Ansiblea voidaan käyttää verkonhallinnan automatisointiin playbookien avulla ja miten playbookeja koostetaan. Opin myös miten voi selvittää mahdollisia verkkoyhteysongelmia (DNS ja SSH) ongelmien selvittämiseen ja ratkaisemiseen käytin Chat GPT:Tä (Versio GPT 5.6 Sol). Verkkoyhteysongelmien ratkomien auttoi ymmärtämään miten Ansible kommunikoi hallittavien laitteiden kanssa. Lopuksi opin myös miten laitteiden tietoja voidaan kerätä keskitetysti Ansiblella. Myös Markdownin kirjoittamiseen alkaa tulla rutiinia. 
