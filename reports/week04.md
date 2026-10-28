@@ -91,19 +91,43 @@ install-snmp-old.yml playbookia muokattiin siten, että se päivittää pakettil
 ansible-playbook -i ../inventory.ini install-snmp.yml
 ```
 
-joka meni läpi ilman ongelmia (Kuva 3)
+Alkuun tämä ei toiminut. Selvitin ongelmaa Chat GPT:n kanssa ja ongelma oli DNS-nimipalvelimen osoitteessa, jotka piti muuttaa. Ne muutettiin ansible-palvelimelle kirjautuneena seuraavalla komennolla:
+
+```bash
+ansible 'web1:db1:branch-client' -i /ansible/inventory.ini -m shell -a 'cp -n /etc/resolv.conf /etc/resolv.conf.before-snmp && printf "nameserver 8.8.8.8\nnameserver 1.1.1.1\n" > /etc/resolv.conf'
+```
+
+
+
+DNS kojrausten jälkeen playbookin ajaminen meni läpi ilman ongelmia (Kuva 3):
 
 ![install-snmp](images/install_snmp.png)
 *Kuva 2. Kuvakaappaus install-snmp.yml playbook-skriptistä.*
 
-![install-snmp](images/run_install_snmp.png)
+![run install-snmp](images/run_install_snmp.png)
 *Kuva 3. Kuvakaappaus install-snmp.yml playbook-skriptin ajamisesta.*
 
 
 
 
-
 ## 4. Node Exporter Playbook
+
+Node Exporter Playbookin luomisessa otettiin mallia Githubista löytyvästä tiedostosta. Alkuperäinen otettiin talteen komennolla:
+```bash
+cp install-node-exporter.yml install-node-exporter-original.yml
+```
+Tämän jälkeen install-node-exporter.yml tiedostoa editoitiin siten, että se asennettava Node Exporter versio asetettiin samaksi, kuin edellisessä harjoituksessa (1.12.1) ja hosts-ryhmää editoitiin siten, että playbook  suoritetaan ohjeistuksen mukaisesti vain web1- ja db1-laitteille (Kuva 4).
+
+![install-node-exporter](images/node_exporter_playbook.png)
+*Kuva 4. Kuvakaappaus install-node-exporter.yml skritpitstä.*
+
+Skripti saatiin ajettua onnistuneesti (Kuva 5).
+![run install-node-exporter](images/node_exporter_run.png)
+*Kuva 5. Kuvakaappaus install-node-exporter.yml skritptin ajamisesta.*
+
+
+
+
 
 ## 5. Vertailu
 
